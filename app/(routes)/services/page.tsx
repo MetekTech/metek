@@ -16,6 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 
 const services = [
   {
@@ -87,6 +88,13 @@ export default function Services() {
                   <TableCell>{service.price}</TableCell>
                   <TableCell className="text-right">
                     <Badge
+                      className={cn(
+                        service.availability === "Available" && "bg-green-600",
+                        service.availability === "Limited" &&
+                          "bg-yellow-600 text-black",
+                        service.availability === "Waitlist" &&
+                          "bg-blue-600 text-white",
+                      )}
                       variant={
                         service.availability === "Available"
                           ? "default"

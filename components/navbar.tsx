@@ -39,7 +39,7 @@ export function Navbar() {
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-8 overflow-hidden">
             <ThemeSwitch />
             <ContactDialog />
           </div>

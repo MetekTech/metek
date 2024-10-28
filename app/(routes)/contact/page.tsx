@@ -6,12 +6,10 @@ import { Mail, MapPin, Phone } from "lucide-react";
 export default function Contact() {
   return (
     <Container>
-      <h1 className="mb-8 font-bold text-4xl">Contact Us</h1>
-
       <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Get in Touch</CardTitle>
+            <CardTitle>Contact Us</CardTitle>
           </CardHeader>
           <CardContent>
             <ContactForm />
@@ -43,7 +41,7 @@ export default function Contact() {
                 <Mail className="mr-2 h-5 w-5" />
                 <div>
                   <h3 className="font-semibold">Email</h3>
-                  <p>info@yourcompany.com</p>
+                  <p>metek@metek.tech</p>
                 </div>
               </div>
             </div>
