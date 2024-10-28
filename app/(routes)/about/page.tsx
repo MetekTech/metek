@@ -50,11 +50,11 @@ export default function About() {
 
       <section className="mb-12">
         <h2 className="mb-4 font-semibold text-3xl">Our Gallery</h2>
-        <Suspense
-          fallback={<Skeleton className="h-[450px] w-[800px] rounded-lg" />}
-        >
-          <Carousel className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-            <CarouselContent>
+        <Carousel className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+          <CarouselContent>
+            <Suspense
+              fallback={<Skeleton className="h-[450px] w-[800px] rounded-lg" />}
+            >
               {images.map((image, index) => (
                 <CarouselItem key={image.alt}>
                   <AspectRatio ratio={16 / 9}>
@@ -70,11 +70,11 @@ export default function About() {
                   </AspectRatio>
                 </CarouselItem>
               ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        </Suspense>
+            </Suspense>
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </section>
 
       <section className="mb-12">
