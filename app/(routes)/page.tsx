@@ -1,22 +1,33 @@
-import { Container } from "@/components/container";
+"use client";
+
+import { ImageGrid } from "@/components/image-grid";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function LandingPage() {
   return (
-    <Container>
-      <h1 className="text-4xl font-bold mb-4">Welcome to Our Website</h1>
-      <p className="mb-4">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui
-        mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor
-        neque eu tellus rhoncus ut eleifend nibh porttitor.
-      </p>
-      <p className="mb-4">
-        Ut in nulla enim. Phasellus molestie magna non est bibendum non
-        venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.
-        Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit
-        odio.
-      </p>
-      <Button>Learn More</Button>
-    </Container>
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black">
+      <div className="absolute grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <ImageGrid />
+      </div>
+
+      <div className="absolute inset-0 bg-black bg-opacity-60" />
+
+      <div className="relative z-10 text-center text-white">
+        <h1 className="mb-8 font-bold text-4xl sm:text-5xl md:text-6xl">
+          Welcome to Metek Tech
+        </h1>
+        <Link href="/about">
+          <Button
+            size="lg"
+            className="group bg-white px-8 py-6 text-black text-lg transition-all duration-300 ease-in-out hover:bg-gray-200"
+          >
+            <span className="mr-2">Discover</span>
+            <ArrowRight className="inline-block transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
+          </Button>
+        </Link>
+      </div>
+    </main>
   );
 }

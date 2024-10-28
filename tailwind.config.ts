@@ -9,6 +9,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        "fade-in": "fadeIn 1s ease-out forwards",
+      },
+      fontFamily: {
+        sans: ["var(--font-geist-sans)"],
+        mono: ["var(--font-geist-mono)"],
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

@@ -27,6 +27,13 @@
         "noUnusedVariables": "warn",
         "useExhaustiveDependencies": "off"
       },
+      "nursery": {
+        "useSortedClasses": {
+          "level": "warn",
+          "options": {},
+          "fix": "safe"
+        }
+      },
       "style": {
         "noNonNullAssertion": "warn",
         "useSelfClosingElements": {

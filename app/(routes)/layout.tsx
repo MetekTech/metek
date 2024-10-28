@@ -6,7 +6,7 @@ export default function Layout(props: PropsWithChildren) {
   const { children } = props;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="flex-grow bg-background">{children}</main>
       <Footer />
