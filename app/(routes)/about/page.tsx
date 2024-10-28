@@ -16,10 +16,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Skeleton } from "@/components/ui/skeleton";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export default function About() {
+  const images = Array.from({ length: 5 }, (_, index) => ({
+    src: `https://picsum.photos/800/450?random=${index + 1}`,
+    alt: `Gallery image ${index + 1}`,
+  }));
+
   return (
     <Container>
       <Card className="mb-8">
@@ -43,25 +50,31 @@ export default function About() {
 
       <section className="mb-12">
         <h2 className="mb-4 font-semibold text-3xl">Our Gallery</h2>
-        <Carousel className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-          <CarouselContent>
-            {[...Array(5)].map((_, index) => (
-              <CarouselItem key={index}>
-                <AspectRatio ratio={16 / 9}>
-                  <Image
-                    src={`https://picsum.photos/seed/${index}/800/450`}
-                    alt={`Gallery image ${index + 1}`}
-                    className="rounded-md object-cover"
-                    height={450}
-                    width={800}
-                  />
-                </AspectRatio>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        <Suspense
+          fallback={<Skeleton className="h-[450px] w-[800px] rounded-lg" />}
+        >
+          <Carousel className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+            <CarouselContent>
+              {images.map((image, index) => (
+                <CarouselItem key={image.alt}>
+                  <AspectRatio ratio={16 / 9}>
+                    <Image
+                      priority={index === 0}
+                      src={image.src}
+                      alt={image.alt}
+                      className="rounded-md object-cover"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      height={450}
+                      width={800}
+                    />
+                  </AspectRatio>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </Suspense>
       </section>
 
       <section className="mb-12">

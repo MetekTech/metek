@@ -9,7 +9,7 @@ export function ImageGrid() {
   useEffect(() => {
     const newImages = Array.from(
       { length: 30 },
-      (_) => `https://picsum.photos/seed/${Math.random()}/400`,
+      (_, idx) => `https://picsum.photos/400?random=${idx + 1}`,
     );
     setImages(newImages);
   }, []);
