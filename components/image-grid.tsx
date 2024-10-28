@@ -25,6 +25,7 @@ export function ImageGrid() {
     >
       <Image
         src={images[index]}
+        priority={index === 0}
         alt=""
         className="h-full w-full object-cover"
         height={400}
