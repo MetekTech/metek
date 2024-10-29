@@ -1,5 +1,5 @@
-import { ContactDialog } from "@/components/contact-dialog";
 import { Container } from "@/components/container";
+import { ContactDialog } from "@/components/navbar/contact-dialog";
 import { Button } from "@/components/ui/button";
 import {
   Card,

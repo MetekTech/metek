@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useState } from "react";
-import { ContactForm } from "./contact-form";
+import { ContactForm } from "../contact-form";
 
 export function ContactDialog() {
   const [open, setOpen] = useState(false);

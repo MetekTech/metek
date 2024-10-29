@@ -1,3 +1,4 @@
+import { ContactDialog } from "@/components/navbar/contact-dialog";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -6,7 +7,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
-import { ContactDialog } from "./contact-dialog";
+import { SmallMenu } from "./small-menu";
 import { ThemeSwitch } from "./theme-switch";
 
 const routes = [
@@ -14,7 +15,7 @@ const routes = [
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
   { name: "Services", path: "/services" },
-] as const;
+];
 
 export function Navbar() {
   return (
@@ -22,8 +23,11 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-8">
-            <div className="font-semibold text-lg">Metek Tech</div>
-            <NavigationMenu>
+            <div className="font-semibold text-lg">
+              <span>Metek</span>
+              <span className="hidden md:inline"> Tech</span>
+            </div>
+            <NavigationMenu className="hidden md:flex">
               <NavigationMenuList>
                 {routes.map((route) => (
                   <NavigationMenuItem key={route.path}>
@@ -39,9 +43,10 @@ export function Navbar() {
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-          <div className="flex items-center gap-8 overflow-hidden">
+          <div className="flex items-center gap-4 md:gap-8">
             <ThemeSwitch />
             <ContactDialog />
+            <SmallMenu routes={routes} />
           </div>
         </div>
       </div>
