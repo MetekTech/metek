@@ -18,7 +18,9 @@ export function ContactDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Message Us</Button>
+        <Button variant="outline" className="transition-colors">
+          Message Us
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
