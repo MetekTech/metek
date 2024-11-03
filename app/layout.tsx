@@ -23,6 +23,10 @@ export const metadata: Metadata = {
   generator: "create-next-app",
 };
 
+/**
+ * Root layout performs the same function as the app.tsx in a react app. It is primarily for meta tags and providers.
+ * Each page will be served with this layout.
+ */
 export default function RootLayout(props: PropsWithChildren) {
   const { children } = props;
 

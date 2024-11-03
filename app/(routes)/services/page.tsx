@@ -18,7 +18,20 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 
-const services = [
+type Service = {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  availability: "Available" | "Limited" | "Waitlist";
+};
+
+/**
+ * You have the option of getting these services from a database or an API.
+ *
+ * It doesn't really matter, the choice boils down to where you want to edit the data from.
+ */
+const services: Service[] = [
   {
     id: 1,
     name: "Web Development",
@@ -54,7 +67,7 @@ const services = [
     price: "Custom Quote",
     availability: "Waitlist",
   },
-] as const;
+];
 
 export default function Services() {
   return (
@@ -82,36 +95,48 @@ export default function Services() {
             </TableHeader>
             <TableBody>
               {services.map((service) => (
-                <TableRow key={service.id}>
-                  <TableCell className="font-medium">{service.name}</TableCell>
-                  <TableCell>{service.description}</TableCell>
-                  <TableCell>{service.price}</TableCell>
-                  <TableCell className="text-right">
-                    <Badge
-                      className={cn(
-                        service.availability === "Available" && "bg-green-600",
-                        service.availability === "Limited" &&
-                          "bg-yellow-600 text-black",
-                        service.availability === "Waitlist" &&
-                          "bg-blue-600 text-white",
-                      )}
-                      variant={
-                        service.availability === "Available"
-                          ? "default"
-                          : service.availability === "Limited"
-                            ? "secondary"
-                            : "outline"
-                      }
-                    >
-                      {service.availability}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
+                <ServiceRow key={service.id} service={service} />
               ))}
             </TableBody>
           </Table>
         </CardContent>
       </Card>
     </Container>
+  );
+}
+
+type ServiceProps = {
+  service: Service;
+};
+
+function ServiceRow(props: ServiceProps) {
+  const {
+    service: { name, description, price, availability },
+  } = props;
+
+  return (
+    <TableRow>
+      <TableCell className="font-medium">{name}</TableCell>
+      <TableCell>{description}</TableCell>
+      <TableCell>{price}</TableCell>
+      <TableCell className="text-right">
+        <Badge
+          className={cn(
+            availability === "Available" && "bg-green-600",
+            availability === "Limited" && "bg-yellow-600 text-black",
+            availability === "Waitlist" && "bg-blue-600 text-white",
+          )}
+          variant={
+            availability === "Available"
+              ? "default"
+              : availability === "Limited"
+                ? "secondary"
+                : "outline"
+          }
+        >
+          {availability}
+        </Badge>
+      </TableCell>
+    </TableRow>
   );
 }

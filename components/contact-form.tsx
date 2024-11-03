@@ -18,6 +18,10 @@ import { Input } from "./ui/input";
 import { PhoneInput } from "./ui/phone-input";
 import { Textarea } from "./ui/textarea";
 
+/*
+ * This is the form validation schema. Read more about using zod here:
+ * @url https://zod.dev/?id=basic-usage
+ */
 const formSchema = z
   .object({
     name: z
@@ -55,6 +59,11 @@ type Props = {
 export function ContactForm(props: Props) {
   const { onSend } = props;
 
+  /**
+   * useForm comes from react hook form. It allows us to create an extensible
+   * form with validation, error handling, and more. Read more about it here:
+   * @url https://react-hook-form.com/get-started
+   */
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {

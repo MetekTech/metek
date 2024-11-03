@@ -22,11 +22,6 @@ import Image from "next/image";
 import { Suspense } from "react";
 
 export default function About() {
-  const images = Array.from({ length: 5 }, (_, index) => ({
-    src: `https://picsum.photos/800/450?random=${index + 1}`,
-    alt: `Gallery image ${index + 1}`,
-  }));
-
   return (
     <Container>
       <Card className="mb-8">
@@ -55,21 +50,7 @@ export default function About() {
             <Suspense
               fallback={<Skeleton className="h-[450px] w-[800px] rounded-lg" />}
             >
-              {images.map((image, index) => (
-                <CarouselItem key={image.alt}>
-                  <AspectRatio ratio={16 / 9}>
-                    <Image
-                      priority={index === 0}
-                      src={image.src}
-                      alt={image.alt}
-                      className="rounded-md object-cover"
-                      loading={index === 0 ? "eager" : "lazy"}
-                      height={450}
-                      width={800}
-                    />
-                  </AspectRatio>
-                </CarouselItem>
-              ))}
+              <ImageGrid />
             </Suspense>
           </CarouselContent>
           <CarouselPrevious />
@@ -116,4 +97,27 @@ export default function About() {
       </Card>
     </Container>
   );
+}
+
+function ImageGrid() {
+  const images = Array.from({ length: 5 }, (_, index) => ({
+    src: `https://picsum.photos/800/450?random=${index + 1}`,
+    alt: `Gallery image ${index + 1}`,
+  }));
+
+  return images.map((image, index) => (
+    <CarouselItem key={image.alt}>
+      <AspectRatio ratio={16 / 9}>
+        <Image
+          priority={index === 0}
+          src={image.src}
+          alt={image.alt}
+          className="rounded-md object-cover"
+          loading={index === 0 ? "eager" : "lazy"}
+          height={450}
+          width={800}
+        />
+      </AspectRatio>
+    </CarouselItem>
+  ));
 }
