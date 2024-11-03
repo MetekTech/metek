@@ -1,6 +1,6 @@
+import { ImageGrid } from "@/components/image-grid";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function LandingPage() {
@@ -28,30 +28,4 @@ export default function LandingPage() {
       </div>
     </main>
   );
-}
-
-function ImageGrid() {
-  const images = Array.from(
-    { length: 30 },
-    (_, idx) => `https://picsum.photos/400.webp?random=${idx + 1}`,
-  );
-
-  return images.map((_, index) => (
-    <div
-      key={index}
-      className="aspect-square animate-fade-in opacity-0"
-      style={{
-        animationDelay: `${(index + 1) * 100}ms`,
-        animationFillMode: "forwards",
-      }}
-    >
-      <Image
-        src={images[index]}
-        alt=""
-        className="h-full w-full object-cover"
-        height={400}
-        width={400}
-      />
-    </div>
-  ));
 }
